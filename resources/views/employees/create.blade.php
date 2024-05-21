@@ -11,7 +11,7 @@
                         <label for="name">Name:</label>
                         <input type="text" name="name" class="form-control" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group ">
                         <label for="email">Email:</label>
                         <input type="email" name="email" class="form-control" required>
                     </div>
@@ -19,7 +19,9 @@
                         <label for="phone">Phone:</label>
                         <input type="text" name="phone" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="pt-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div>
                 </form>
             </div>
         </div>

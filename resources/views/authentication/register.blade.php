@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="/register" method="POST">
+    <form action="/register" method="POST" class="align middle">
         {{-- Name --}}
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname"><br>
         <label for="password">Password</label><br>
-        <input type="password" id="password" name="password">
+        <input type="password" id="password" name="password" required>
         {{-- End name --}}
         {{-- Gender --}}
         <br>
