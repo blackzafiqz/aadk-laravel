@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Kemaskini Alamat</h2>
-                <form action="{{ route('alamat.update', $alamat->id) }}" method="PUT">
+                <form action="{{ route('alamat.update', $alamat->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group

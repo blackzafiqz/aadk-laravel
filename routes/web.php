@@ -32,7 +32,7 @@ Route::prefix('admin')->group(function ()
         Route::post('/', [AlamatController::class, 'store'])->name('alamat.store');
         Route::get('/{alamat}', [AlamatController::class, 'show'])->name('alamat.show');
         Route::get('/{alamat}/edit', [AlamatController::class, 'edit'])->name('alamat.edit');
-        Route::patch('/{alamat}', [AlamatController::class, 'update'])->name('alamat.update');
+        Route::put('/{alamat}', [AlamatController::class, 'update'])->name('alamat.update');
         Route::delete('/{alamat}', [AlamatController::class, 'destroy'])->name('alamat.destroy');
     });
 });
