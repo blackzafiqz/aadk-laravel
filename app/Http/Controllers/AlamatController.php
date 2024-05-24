@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alamat;
+
 class AlamatController extends Controller
 {
     public function index()
@@ -20,9 +21,9 @@ class AlamatController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'alamat' => 'required',
+            'daerah' => 'required',
             'poskod' => 'required',
-            'bandar' => 'required',
+            'mukim' => 'required',
             'negeri' => 'required',
         ]);
 
@@ -45,9 +46,9 @@ class AlamatController extends Controller
     public function update(Request $request, Alamat $alamat)
     {
         $request->validate([
-            'alamat' => 'required',
+            'daerah' => 'required',
             'poskod' => 'required',
-            'bandar' => 'required',
+            'mukim' => 'required',
             'negeri' => 'required',
         ]);
 
