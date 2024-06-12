@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sekolah;
+use App\Models\Alamat;
+
 class SekolahController extends Controller
 {
     public function index()
@@ -13,7 +15,8 @@ class SekolahController extends Controller
     }
     public function create()
     {
-        return view('sekolah.create');
+        $alamats = Alamat::all();
+        return view('sekolah.create', compact('alamats'));
     }
     public function store(Request $request)
     {

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Alamat;
 
+use function Pest\Laravel\json;
+
 class AlamatController extends Controller
 {
     public function index()
@@ -64,5 +66,21 @@ class AlamatController extends Controller
 
         return redirect()->route('alamat.index')
             ->with('success', 'Alamat deleted successfully');
+    }
+
+    public function negeri()
+    {
+        $negeri = Alamat::select('negeri')->distinct()->get();
+        return response()->json($negeri);
+    }
+    public function daerah($negeri)
+    {
+        $daerah = Alamat::select('daerah')->where('negeri', $negeri)->distinct()->get();
+        return response()->json($daerah);
+    }
+    public function mukim($daerah)
+    {
+        $mukim = Alamat::select('mukim')->where('daerah', $daerah)->distinct()->get();
+        return response()->json($mukim);
     }
 }
