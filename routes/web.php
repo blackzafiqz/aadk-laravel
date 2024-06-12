@@ -21,7 +21,6 @@ Route::middleware('auth')->group(function ()
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 //Route::middleware('auth')->group(function () {
 Route::prefix('admin')->group(function ()
 {
@@ -31,14 +30,17 @@ Route::prefix('admin')->group(function ()
         Route::get('/', [AlamatController::class, 'index'])->name('alamat.index');
         Route::get('/create', [AlamatController::class, 'create'])->name('alamat.create');
         Route::post('/', [AlamatController::class, 'store'])->name('alamat.store');
-        Route::get('/{alamat}', [AlamatController::class, 'show'])->name('alamat.show');
-        Route::get('/{alamat}/edit', [AlamatController::class, 'edit'])->name('alamat.edit');
-        Route::put('/{alamat}', [AlamatController::class, 'update'])->name('alamat.update');
-        Route::delete('/{alamat}', [AlamatController::class, 'destroy'])->name('alamat.destroy');
+
 
         Route::get('/negeri', [AlamatController::class, 'negeri'])->name('alamat.negeri');
         Route::get('/daerah/{negeri}', [AlamatController::class, 'daerah'])->name('alamat.daerah');
         Route::get('/mukim/{daerah}', [AlamatController::class, 'mukim'])->name('alamat.mukim');
+        Route::get('/poskod', [AlamatController::class, 'poskod'])->name('alamat.poskod');
+
+        Route::get('/{alamat}', [AlamatController::class, 'show'])->name('alamat.show');
+        Route::get('/{alamat}/edit', [AlamatController::class, 'edit'])->name('alamat.edit');
+        Route::put('/{alamat}', [AlamatController::class, 'update'])->name('alamat.update');
+        Route::delete('/{alamat}', [AlamatController::class, 'destroy'])->name('alamat.destroy');
     });
     Route::prefix('sekolah')->group(function ()
     {

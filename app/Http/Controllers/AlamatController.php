@@ -83,4 +83,13 @@ class AlamatController extends Controller
         $mukim = Alamat::select('mukim')->where('daerah', $daerah)->distinct()->get();
         return response()->json($mukim);
     }
+    public function poskod(Request $request)
+    {
+        $poskod = Alamat::select('poskod')
+            ->where('negeri', $request->negeri)
+            ->where('daerah', $request->daerah)
+            ->where('mukim', $request->mukim)
+            ->distinct()->get();
+        return response()->json($poskod);
+    }
 }

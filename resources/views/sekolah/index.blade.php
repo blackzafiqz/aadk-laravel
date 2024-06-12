@@ -19,16 +19,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($sekolah as $sekolah)
+                                @foreach ($sekolahs as $sekolah)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $sekolah->nama_sekolah }}</td>
-                                        <td>{{ $sekolah->alamat->negeri }}</td>
+                                        <td>{{ $sekolah->nama }}</td>
+                                        <td>{{ $sekolah->address_line }}</td>
                                         <td>
-                                            <a href="{{ route('sekolah.edit', $sekolah->id) }}"
+
+                                            <a href="{{ route('sekolah.edit', $sekolah->kod_sekolah) }}"
                                                 class="btn btn-warning">Edit</a>
-                                            <form action="{{ route('sekolah.destroy', $sekolah->id) }}" method="post"
-                                                class="d-inline">
+                                            <form action="{{ route('sekolah.destroy', $sekolah->kod_sekolah) }}"
+                                                method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger">Hapus</button>

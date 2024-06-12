@@ -7,12 +7,19 @@
                 <h2>Tambah Sekolah</h2>
                 <form action="{{ route('sekolah.store') }}" method="POST">
                     @csrf
+                    <div class="form-group">
+                        <label for="kod_sekolah">Kod Sekolah:</label>
+                        <input type="text" id="kod_sekolah" name="kod_sekolah" class="form-control" required>
+                    </div>
 
                     <div class="form-group">
                         <label for="nama">Nama Sekolah:</label>
-                        <input type="text" id="nama" name="nama" class="form-control" required>
+                        <input type="text" id="nama" name="nama_sekolah" class="form-control" required>
                     </div>
-
+                    <div class="form-group">
+                        <label for="address_line">Alamat:</label>
+                        <input type="text" id="address_line" name="address_line" class="form-control" required>
+                    </div>
                     <div class="form-group">
                         <label for="negeri">Negeri:</label>
                         <select id="negeri" name="negeri" class="form-control" required>
@@ -36,7 +43,12 @@
 
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="poskod">Poskod:</label>
+                        <select disabled id="poskod" name="poskod" class="form-control" required>
 
+                        </select>
+                    </div>
                     <div class="pt-3">
                         <button disabled type="submit" class="btn btn-primary">Submit</button>
                         <div>
@@ -96,9 +108,41 @@
                 }
             });
 
+
             $('select[name="mukim"]').on('change', function() {
                 var mukim = $(this).val();
+                var daerah = $('select[name="daerah"]').val();
+                var negeri = $('select[name="negeri"]').val();
+
                 if (mukim) {
+                    $.ajax({
+                        url: "/admin/alamat/poskod/",
+                        type: "GET",
+                        dataType: "json",
+                        data: {
+                            daerah: daerah,
+                            negeri: negeri,
+                            mukim: mukim
+                        },
+                        success: function(data) {
+                            $('select[name="poskod"]').empty();
+                            $('select[name="poskod"]').append(
+                                '<option value="">Pilih Poskod</option>');
+                            $.each(data, function(key, value) {
+                                $('select[name="poskod"]').append(
+                                    '<option value="' + value.poskod + '">' + value
+                                    .poskod + '</option>');
+                            });
+                            $('select[name="poskod"]').prop('disabled', false);
+                        }
+                    });
+                } else {
+                    $('select[name="poskod"]').empty();
+                }
+            });
+            $('select[name=poskod]').on('change', function() {
+                var poskode = $(this).val();
+                if (poskode) {
                     $('button[type="submit"]').prop('disabled', false);
                 } else {
                     $('button[type="submit"]').prop('disabled', true);

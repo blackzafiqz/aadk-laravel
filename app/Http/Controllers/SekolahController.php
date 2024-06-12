@@ -10,8 +10,8 @@ class SekolahController extends Controller
 {
     public function index()
     {
-        $sekolah = Sekolah::all();
-        return view('sekolah.index', compact('sekolah'));
+        $sekolahs = Sekolah::all();
+        return view('sekolah.index', compact('sekolahs'));
     }
     public function create()
     {
@@ -23,12 +23,17 @@ class SekolahController extends Controller
         $request->validate([
             'kod_sekolah' => 'required',
             'nama_sekolah' => 'required',
-            'alamat' => 'required',
+            'address_line' => 'required',
             'poskod' => 'required',
-            'bandar' => 'required',
-            'negeri' => 'required',
         ]);
-        Sekolah::create($request->all());
+        $alamat = Alamat::where('poskod', $request->poskod)->first();
+
+        Sekolah::create([
+            'kod_sekolah' => $request->kod_sekolah,
+            'nama' => $request->nama_sekolah,
+            'address_line' => $request->address_line,
+            'alamat_id' => $alamat->id,
+        ]);
         return redirect()->route('sekolah.index')
             ->with('success', 'Sekolah created successfully.');
     }
@@ -43,12 +48,8 @@ class SekolahController extends Controller
     public function update(Request $request, Sekolah $sekolah)
     {
         $request->validate([
-            'kod_sekolah' => 'required',
-            'nama_sekolah' => 'required',
-            'alamat' => 'required',
-            'poskod' => 'required',
-            'bandar' => 'required',
-            'negeri' => 'required',
+            'nama' => 'required',
+            'address_line' => 'required',
         ]);
         $sekolah->update($request->all());
         return redirect()->route('sekolah.index')
