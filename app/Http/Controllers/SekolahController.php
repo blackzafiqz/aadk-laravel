@@ -55,4 +55,10 @@ class SekolahController extends Controller
         return redirect()->route('sekolah.index')
             ->with('success', 'Sekolah updated successfully');
     }
+    public function destroy(Sekolah $sekolah)
+    {
+        $sekolah->delete();
+        return redirect()->route('sekolah.index')
+            ->with('success', 'Sekolah deleted successfully');
+    }
 }
