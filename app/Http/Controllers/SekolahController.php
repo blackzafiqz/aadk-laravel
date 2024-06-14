@@ -61,4 +61,13 @@ class SekolahController extends Controller
         return redirect()->route('sekolah.index')
             ->with('success', 'Sekolah deleted successfully');
     }
+
+    public function findByPostcode($postcode)
+    {
+        $sekolahs = Sekolah::whereHas('alamat', function ($query) use ($postcode)
+        {
+            $query->where('poskod', $postcode);
+        })->get();
+        return response()->json($sekolahs);
+    }
 }

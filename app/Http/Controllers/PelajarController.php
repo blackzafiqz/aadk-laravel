@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pelajar;
+use App\Models\Sekolah;
+use App\Models\Alamat;
 class PelajarController extends Controller
 {
     public function index()
     {
-        $pelajar = Pelajar::all();
-        return view('pelajar.index', compact('pelajar'));
+        $pelajars = Pelajar::all();
+        return view('pelajar.index', compact('pelajars'));
     }
     public function create()
     {
-        return view('pelajar.create');
+        $sekolahs = Sekolah::all();
+        $alamats = Alamat::all();
+        return view('pelajar.create', compact('sekolahs', 'alamats'));
     }
     public function store(Request $request)
     {

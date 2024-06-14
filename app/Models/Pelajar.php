@@ -17,4 +17,8 @@ class Pelajar extends Model
         'alamat_id',
         'kod_sekolah',
     ];
+    public function alamat()
+    {
+        return $this->belongsTo(Alamat::class);
+    }
 }

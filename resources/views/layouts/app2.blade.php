@@ -19,6 +19,9 @@
             </a>
             <ul class="nav">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pelajar.index') }}">Pelajar</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('sekolah.index') }}">Sekolah</a>
                 </li>
                 <li class="nav-item">

@@ -15,4 +15,9 @@ class Alamat extends Model
         'mukim',
         'poskod',
     ];
+
+    public function sekolah()
+    {
+        return $this->hasMany(Sekolah::class);
+    }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\AlamatController;
+use App\Http\Controllers\PelajarController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function ()
@@ -47,10 +48,24 @@ Route::prefix('admin')->group(function ()
         Route::get('/', [SekolahController::class, 'index'])->name('sekolah.index');
         Route::get('/create', [SekolahController::class, 'create'])->name('sekolah.create');
         Route::post('/', [SekolahController::class, 'store'])->name('sekolah.store');
+
+        Route::get('/findByPostcode/{postcode}', [SekolahController::class, 'findByPostcode'])->name('sekolah.findByPostcode');
+
         Route::get('/{sekolah}', [SekolahController::class, 'show'])->name('sekolah.show');
         Route::get('/{sekolah}/edit', [SekolahController::class, 'edit'])->name('sekolah.edit');
         Route::put('/{sekolah}', [SekolahController::class, 'update'])->name('sekolah.update');
         Route::delete('/{sekolah}', [SekolahController::class, 'destroy'])->name('sekolah.destroy');
+    });
+
+    Route::prefix('pelajar')->group(function ()
+    {
+        Route::get('/', [PelajarController::class, 'index'])->name('pelajar.index');
+        Route::get('/create', [PelajarController::class, 'create'])->name('pelajar.create');
+        Route::post('/', [PelajarController::class, 'store'])->name('pelajar.store');
+        Route::get('/{pelajar}', [PelajarController::class, 'show'])->name('pelajar.show');
+        Route::get('/{pelajar}/edit', [PelajarController::class, 'edit'])->name('pelajar.edit');
+        Route::put('/{pelajar}', [PelajarController::class, 'update'])->name('pelajar.update');
+        Route::delete('/{pelajar}', [PelajarController::class, 'destroy'])->name('pelajar.destroy');
     });
 });
 //});
