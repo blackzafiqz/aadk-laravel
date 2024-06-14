@@ -9,6 +9,8 @@ class Pelajar extends Model
 {
     use HasFactory;
     protected $table = 'pelajar';
+    protected $primaryKey = 'no_mykad';
+    protected $keyType = 'string';
     protected $fillable = [
         'no_mykad',
         'nama',
@@ -20,5 +22,9 @@ class Pelajar extends Model
     public function alamat()
     {
         return $this->belongsTo(Alamat::class);
+    }
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'kod_sekolah', 'kod_sekolah');
     }
 }

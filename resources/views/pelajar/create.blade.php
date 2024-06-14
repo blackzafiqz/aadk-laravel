@@ -86,13 +86,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="sekolah_id">Sekolah:</label>
-                    <select id="sekolah_id" name="sekolah_id" class="form-control" disabled required>
+                    <label for="kod_sekolah">Sekolah:</label>
+                    <select id="kod_sekolah" name="kod_sekolah" class="form-control" disabled required>
                     </select>
                 </div>
             </div>
 
         </div>
+        <div class="pt-3">
+            <button disabled type="submit" class="btn btn-primary">Submit</button>
+            <div>
     </form>
 @endsection
 @section('script')
@@ -263,27 +266,36 @@
                 }
             });
             $('select[name="poskod_sekolah"]').on('change', function() {
-                var daerah = $(this).val();
-                if (daerah) {
+                var poskod = $(this).val();
+                if (poskod) {
                     $.ajax({
-                        url: "/admin/sekolah/findByPostcode/" + daerah,
+                        url: "/admin/sekolah/findByPostcode/" + poskod,
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            $('select[name="sekolah_id"]').empty();
-                            $('select[name="sekolah_id"]').append(
+                            $('select[name="kod_sekolah"]').empty();
+                            $('select[name="kod_sekolah"]').append(
                                 '<option value="">Pilih Sekolah</option>');
                             $.each(data, function(key, value) {
-                                $('select[name="sekolah_id"]').append(
+                                $('select[name="kod_sekolah"]').append(
                                     '<option value="' + value.kod_sekolah + '">' +
                                     value
                                     .nama + '</option>');
                             });
-                            $('select[name="sekolah_id"]').prop('disabled', false);
+                            $('select[name="kod_sekolah"]').prop('disabled', false);
                         }
                     });
                 } else {
-                    $('select[name="sekolah_id"]').empty();
+                    $('select[name="kod_sekolah"]').empty();
+                }
+            });
+            $('select').on('change', function() {
+                var kod_sekolah = $('select[name="kod_sekolah"]').val();
+                var poskod_pelajar = $('select[name="poskod_pelajar"]').val();
+                if (poskod_pelajar !== null && kod_sekolah !== null) {
+                    $('button[type="submit"]').prop('disabled', false);
+                } else {
+                    $('button[type="submit"]').prop('disabled', true);
                 }
             });
         });

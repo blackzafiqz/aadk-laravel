@@ -29,9 +29,9 @@
                                         <td>{{ $pelajar->sekolah->nama }}</td>
                                         <td>
 
-                                            <a href="{{ route('pelajar.edit', $pelajar->id) }}"
+                                            <a href="{{ route('pelajar.edit', $pelajar->no_mykad) }}"
                                                 class="btn btn-warning">Edit</a>
-                                            <form action="{{ route('pelajar.destroy', $pelajar->id) }}" method="post"
+                                            <form action="{{ route('pelajar.destroy', $pelajar->no_mykad) }}" method="post"
                                                 class="d-inline">
                                                 @csrf
                                                 @method('delete')
