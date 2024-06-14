@@ -38,7 +38,7 @@ class PelajarController extends Controller
             ->where('mukim', $request->mukim_pelajar)
             ->where('poskod', $request->poskod_pelajar)
             ->first();
-        $res = Pelajar::create([
+        Pelajar::create([
             'no_mykad' => $request->no_mykad,
             'nama' => $request->nama,
             'email' => $request->email,

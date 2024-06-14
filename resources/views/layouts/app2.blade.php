@@ -10,7 +10,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 </head>
-
 <body>
     <nav class="navbar bg-body-tertiary">
         <div class="container">
@@ -40,6 +39,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     @yield('script')
+
 </body>
 
 </html>
